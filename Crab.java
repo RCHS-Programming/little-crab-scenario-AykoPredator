@@ -7,14 +7,46 @@ public class Crab extends Actor
 {
     public void act()
     {
-        move();
-        turn (0);
+        if(isAtEdge())
+        {
+           turn (17); 
+        }
+        
+        if(Greenfoot.getRandomNumber(100)<10)
+        {
+           turn(Greenfoot.getRandomNumber(91)-45);  
+        }
+       move();
+       lookForWorm();
+    }
+    
+    public boolean canSee(Class clss)
+    {
+        Actor actor = getOneObjectAtOffset(0, 0, clss);
+        return actor != null;
+    }
+
+    public void eat(Class clss)
+    {
+        Actor actor = getOneObjectAtOffset(0, 0,clss);
+        if(actor != null)  {
+            getWorld().removeObject(actor);
+        }
     }
     
     public void move( )
     {
         move(5);
     }
-}
+    
+    public void lookForWorm()
+    {
+        if(isTouching(Worm.class))
+        {
+            removeTouching(Worm.class);
+        }
+    }
+    }
 
+    
 
