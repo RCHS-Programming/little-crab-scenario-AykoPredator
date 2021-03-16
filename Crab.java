@@ -7,17 +7,21 @@ public class Crab extends Actor
 {
     public void act()
     {
-        if(isAtEdge())
-        {
-           turn (17); 
-        }
-        
-        if(Greenfoot.getRandomNumber(100)<10)
-        {
-           turn(Greenfoot.getRandomNumber(91)-45);  
-        }
+       checkKeyPress();
        move();
        lookForWorm();
+    }
+    
+    public void checkKeyPress()
+    {
+        if(Greenfoot.isKeyDown("left"))
+        {
+            turn(-4);
+        }
+        if(Greenfoot.isKeyDown("right"))
+        {
+            turn(4);
+        }
     }
     
     public boolean canSee(Class clss)
@@ -41,9 +45,9 @@ public class Crab extends Actor
     
     public void lookForWorm()
     {
-        if(isTouching(Worm.class))
+        if(canSee(Worm.class))
         {
-            removeTouching(Worm.class);
+            eat(Worm.class);
         }
     }
     }
