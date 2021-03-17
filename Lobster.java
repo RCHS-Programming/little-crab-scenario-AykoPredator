@@ -60,6 +60,7 @@ public void act()
         if(canSee(Crab.class))
         {
             eat(Crab.class);
+            Greenfoot.playSound("Crunch.wav");
             Greenfoot.stop();
         }
     }   
