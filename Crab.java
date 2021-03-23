@@ -5,6 +5,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
  */
 public class Crab extends Actor
 {
+    private GreenfootImage image1;
+    private GreenfootImage image2;
+
+    public Crab()
+    {
+      image1 = new GreenfootImage("Crab.png");
+      image2 = new GreenfootImage("Crab2.png");
+      setImage(image1);
+    }
+    
     public void act()
     {
        checkKeyPress();
@@ -50,6 +60,8 @@ public class Crab extends Actor
             eat(Worm.class);
         }
     }
+    
+
     }
 
     
