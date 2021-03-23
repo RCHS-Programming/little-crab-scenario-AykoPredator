@@ -7,17 +7,19 @@ public class Crab extends Actor
 {
     private GreenfootImage image1;
     private GreenfootImage image2;
-
+    private int wormsEaten;
+    
     public Crab()
     {
-      image1 = new GreenfootImage("Crab.png");
-      image2 = new GreenfootImage("Crab2.png");
+      image1 = new GreenfootImage("crab.png");
+      image2 = new GreenfootImage("crab2.png");
       setImage(image1);
     }
     
     public void act()
     {
        checkKeyPress();
+       switchImage();
        move();
        lookForWorm();
     }
@@ -55,11 +57,34 @@ public class Crab extends Actor
     
     public void lookForWorm()
     {
+        if(isTouching(Worm.class))
+        {
+           removeTouching(Worm.class);
+           Greenfoot.playSound("slurp.wav");
+           
+           wormsEaten = wormsEaten +1;
+           if(wormsEaten ==8)
+           {
+             Greenfoot.playSound ("fanfare.wav");
+             Greenfoot.stop();
+            }
+            
+        }
         if(canSee(Worm.class))
         {
             eat(Worm.class);
         }
     }
+    public void switchImage(){
+        if (getImage() == image1)
+        {
+            setImage (image2);
+        }
+        else
+        {
+            setImage (image1);
+        }
+    } 
     
 
     }
